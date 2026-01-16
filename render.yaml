@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: checkfox-api-skillcheck
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: USER_ID
+        sync: false
+      - key: BEARER_TOKEN
+        sync: false
+      - key: CUSTOMER_BASE_URL
+        value: "https://contactapi.static.fyi"
+      - key: SEND_TO_CUSTOMER
+        value: "true"
+      - key: REQUEST_TIMEOUT_SECONDS
+        value: "10"
+      - key: LOG_LEVEL
+        value: "INFO"
