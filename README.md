@@ -28,10 +28,9 @@ FastAPI was chosen because this project is a **small, isolated microservice**:
 ```bash
 docker compose up --build
 ```
-2. Open 
-http://127.0.0.1:8000/docs
+2. Open http://127.0.0.1:8000/ (redirects to /docs)
 
-**Note:All endpoints require `Bearer token` authentication.**
+**Note: All endpoints require `Bearer token` authentication.**
 
 3. Click on Authorize
 4. Use `Bearer Token`

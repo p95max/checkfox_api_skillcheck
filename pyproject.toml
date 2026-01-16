@@ -6,15 +6,16 @@ authors = [
     {name = "maxx",email = "m.petrykin@gmx.de"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14,<3.15"
 dependencies = [
     "fastapi (>=0.128.0,<0.129.0)",
-    "uvicorn (>=0.40.0,<0.41.0)",
+    "uvicorn[standard] (>=0.40.0,<0.41.0)",
     "httpx (>=0.28.1,<0.29.0)",
     "python-dotenv (>=1.2.1,<2.0.0)",
     "pydantic-settings (>=2.12.0,<3.0.0)",
     "pydantic[email] (>=2.12.5,<3.0.0)"
 ]
+
 
 
 [build-system]

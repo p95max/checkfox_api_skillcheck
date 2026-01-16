@@ -1,7 +1,7 @@
 import logging
 from typing import Any
 
-from fastapi import FastAPI, Response, Header, Depends, HTTPException, status
+from fastapi import FastAPI, Response, Depends, HTTPException, status
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, Field
 
@@ -9,7 +9,6 @@ from app.logging_conf import configure_logging
 from app.schemas import IngestResult
 from app.services import extract_normalized_lead, evaluate_lead_rules, forward_to_customer
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from app.services import is_authorized
 from app.settings import settings
 
 configure_logging(settings.log_level)
