@@ -133,3 +133,9 @@ Expected behavior:
 * Lead is not forwarded
 
 ---
+
+## Contacts
+
+Author: Maksym Petrykin  
+Email: [m.petrykin@gmx.de](mailto:m.petrykin@gmx.de)  
+Telegram: [@max_p95](https://t.me/max_p95)
