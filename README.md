@@ -134,6 +134,12 @@ Expected behavior:
 
 ---
 
+## Pytest
+```bash
+# run tests
+poetry run pytest
+```
+
 ## Contacts
 
 Author: Maksym Petrykin  
