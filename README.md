@@ -56,6 +56,26 @@ FakeCustomerToken
 
 ---
 
+## Webhook / Trigger Test (Endpoint #1)
+
+The external trigger endpoint provided in the task can be used to send
+an arbitrary lead to this service as a webhook.
+
+This demonstrates the full end-to-end flow:
+trigger → webhook → validation → transformation → customer API.
+
+```bash
+curl -i -X POST https://contactapi.static.fyi/lead/trigger/fake/petrykin/ \
+  -H "Authorization: Bearer FakeCustomerToken" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://checkfox-api-skillcheck.onrender.com/api/v1/leads/ingest",
+    "headers": {
+      "Authorization": "Bearer FakeCustomerToken"
+    }
+  }'
+```
+
 ## Smoke Test (cURL)
 
 ### Local (Docker)
@@ -207,6 +227,25 @@ Expected behavior:
 ```bash
 poetry run pytest
 ```
+
+---
+
+## AI Usage Disclosure
+
+AI assistance was used during the development of this project in a limited and transparent way.
+
+### AI-assisted parts
+
+The following areas were created or refined with the help of AI tools:
+
+- Initial project scaffolding (FastAPI application structure, Docker setup)
+- API schemas and data normalization logic, due to the absence of full customer documentation (customer_doc.pdf
+customer_attribute_mapping.json)
+- Customer payload transformation based on empirical validation against the fake customer API
+- Test structure and basic test cases
+- Documentation drafts (README and API usage examples)
+
+All AI-generated content was reviewed, adjusted, and validated manually.
 
 ---
 
