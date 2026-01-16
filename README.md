@@ -1,14 +1,17 @@
 ## API Usage
 
-### Live Service
+### Service Functionality
 
-A production-ready instance is deployed and publicly available:
+The service acts as a webhook-based lead processor:
 
-https://checkfox-api-skillcheck.onrender.com
+- Receives incoming lead data via a single API endpoint
+- Normalizes and validates incoming payloads
+- Applies customer-specific business rules
+- Transforms accepted leads into the customer-required schema
+- Forwards valid leads to the fake customer API
+- Rejects invalid leads without forwarding
 
-The service is fully functional and connected to the fake customer API provided in the task.
-
----
+The service is designed as a stateless, API-only microservice.
 
 ## Business Rules Summary
 
@@ -16,8 +19,6 @@ The service is fully functional and connected to the fake customer API provided 
 * Only house owners are accepted
 * Invalid leads return HTTP 200 with `accepted = false`
 * Unauthorized requests return HTTP 401
-
----
 
 ## Technology Choice  
 ### Why FastAPI instead of Django
@@ -30,6 +31,19 @@ FastAPI was chosen because this project is a **small, isolated microservice**:
 - Lower overhead and faster development for focused, single-purpose services.
 
 `Django` is a strong framework, but for a dedicated microservice it would be excessive without adding real value.
+
+---
+
+# Live Service
+
+A production-ready instance is deployed and publicly available:
+
+https://checkfox-api-skillcheck.onrender.com
+
+The service is fully functional and connected to the fake customer API provided in the task.
+
+**The service is deployed on a free-tier hosting plan.  
+Cold starts and short response delays may occur during periods of inactivity.**
 
 ---
 
