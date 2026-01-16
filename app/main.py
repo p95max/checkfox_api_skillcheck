@@ -1,19 +1,22 @@
 import logging
 from typing import Any
 
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Header, Depends, HTTPException, status
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, Field
 
 from app.logging_conf import configure_logging
 from app.schemas import IngestResult
 from app.services import extract_normalized_lead, evaluate_lead_rules, forward_to_customer
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from app.services import is_authorized
 from app.settings import settings
 
 configure_logging(settings.log_level)
 logger = logging.getLogger("app")
 
 app = FastAPI(title=settings.app_name)
+bearer = HTTPBearer(auto_error=False)
 
 
 class LeadIn(BaseModel):
@@ -43,8 +46,12 @@ async def root() -> RedirectResponse:
 async def health() -> Response:
     return Response(status_code=200)
 
+def require_token(creds: HTTPAuthorizationCredentials | None = Depends(bearer)) -> None:
+    if creds is None or creds.scheme.lower() != "bearer" or creds.credentials != settings.bearer_token:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="unauthorized")
 
-@app.post("/api/v1/leads/ingest", response_model=IngestResult)
+
+@app.post("/api/v1/leads/ingest", response_model=IngestResult, dependencies=[Depends(require_token)])
 async def ingest_lead(body: LeadIn) -> IngestResult:
     try:
         lead = extract_normalized_lead(body.payload)

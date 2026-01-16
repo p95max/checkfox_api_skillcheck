@@ -1,6 +1,5 @@
 from typing import Any, Optional
 import logging
-
 from app.schemas import NormalizedLead
 from app.customer_mapping import map_to_customer_payload
 from app.http_client import post_json
@@ -41,6 +40,19 @@ def evaluate_lead_rules(lead: NormalizedLead) -> tuple[bool, Optional[str]]:
     return True, None
 
 
+def is_authorized(authorization_header: Optional[str], expected_token: str) -> bool:
+    """
+    Validates Bearer token from the Authorization header.
+    """
+    if not authorization_header:
+        return False
+    if not authorization_header.startswith("Bearer "):
+        return False
+    token = authorization_header.removeprefix("Bearer ").strip()
+    return token == expected_token
+
+
+
 async def forward_to_customer(lead: NormalizedLead) -> tuple[bool, Optional[int]]:
     """
     Sends accepted leads to the fake customer endpoint.
@@ -59,3 +71,4 @@ async def forward_to_customer(lead: NormalizedLead) -> tuple[bool, Optional[int]
     except Exception:
         logger.exception("Customer API request failed")
         return False, None
+
