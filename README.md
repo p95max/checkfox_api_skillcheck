@@ -156,13 +156,14 @@ Accepted lead (zipcode starts with `66`)
 ```json
 {
   "payload": {
-    "first_name": "Max",
-    "last_name": "P",
-    "email": "max@example.com",
-    "phone": "+491234",
-    "zipcode": "66123",
+    "address_line1": "Weststr. 1",
+    "city": "Chemnitz",
+    "email": "johndoe123@example.com",
+    "first_name": "John",
     "house_owner": true,
-    "address_line1": "Street 1"
+    "last_name": "Doe",
+    "phone": "+491234",
+    "zipcode": "86123"
   }
 }
 ```
@@ -181,13 +182,14 @@ Rejected lead (zipcode does NOT start with `66`)
 ```json
 {
   "payload": {
-    "first_name": "Max",
-    "last_name": "P",
-    "email": "max@example.com",
-    "phone": "+491234",
-    "zipcode": "88123",
+    "address_line1": "Weststr. 1",
+    "city": "Chemnitz",
+    "email": "johndoe123@example.com",
+    "first_name": "John",
     "house_owner": true,
-    "address_line1": "Street 1"
+    "last_name": "Doe",
+    "phone": "+491234",
+    "zipcode": "86123"
   }
 }
 ```
