@@ -15,7 +15,7 @@ The service is designed as a stateless, API-only microservice.
 
 ## Business Rules Summary
 
-- Only leads with zipcode/postcode starting with `66` are accepted
+- Only leads with zipcode/zip code starting with `66` are accepted
 - Only house owners are accepted (`house_owner = true`)
 - Invalid leads return HTTP 200 with `accepted = false`
 - Unauthorized requests return HTTP 401
@@ -98,7 +98,7 @@ curl -i -X POST https://contactapi.static.fyi/lead/trigger/fake/petrykin/ \
 
 ## Smoke Test (cURL - Docker)
 
-1. Positive (accepted: postcode 66*** + house_owner=true)
+1. Positive (accepted: zip code 66*** + house_owner=true)
 ```bash
 curl -i -X POST http://localhost:8000/api/v1/leads/ingest \
   -H "Content-Type: application/json" \
@@ -375,6 +375,6 @@ All AI-generated content was reviewed, adjusted, and validated manually.
 
 ## Contacts
 
-Author: Maksym Petrykin
-Email: m.petrykin@gmx.de
-Telegram: @max_p95
+Author: Maksym Petrykin  
+Email: [m.petrykin@gmx.de](mailto:m.petrykin@gmx.de)  
+Telegram: [@max_p95](https://t.me/max_p95)
