@@ -238,9 +238,18 @@ Expected behavior:
 
 ## Pytest
 
+### Covered by tests:
+- Lead rules evaluation (accept/reject logic)
+- Nested inbound payload normalization
+- Outbound customer payload mapping
+
 ```bash
 poetry run pytest
 ```
+Expected behavior:
+* collected 6 items
+* 6 passed in 0.20s
+
 
 ---
 

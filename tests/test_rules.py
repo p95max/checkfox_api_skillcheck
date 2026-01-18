@@ -10,8 +10,10 @@ def test_accepts_zip_66_owner_true():
         phone="+491234",
         zipcode="66123",
         house_owner=True,
-        address_line1="Street 1",
+        street="Street",
+        housenumber="1",
         city="X",
+        product_name="solar",
     )
     accepted, reason = evaluate_lead_rules(lead)
     assert accepted is True
@@ -26,9 +28,29 @@ def test_rejects_wrong_zip():
         phone="+491234",
         zipcode="70123",
         house_owner=True,
-        address_line1="Street 1",
+        street="Street",
+        housenumber="1",
         city="X",
+        product_name="solar",
     )
     accepted, reason = evaluate_lead_rules(lead)
     assert accepted is False
     assert reason == "zipcode_not_allowed"
+
+
+def test_rejects_not_house_owner():
+    lead = NormalizedLead(
+        first_name="Max",
+        last_name="P",
+        email="max@example.com",
+        phone="+491234",
+        zipcode="66123",
+        house_owner=False,
+        street="Street",
+        housenumber="1",
+        city="X",
+        product_name="solar",
+    )
+    accepted, reason = evaluate_lead_rules(lead)
+    assert accepted is False
+    assert reason == "not_house_owner"

@@ -23,18 +23,29 @@ class LeadIn(BaseModel):
         default_factory=dict,
         json_schema_extra={
             "example": {
-                "first_name": "John",
-                "last_name": "Doe",
-                "email": "johndoe123@example.com",
-                "phone": "+491234",
-                "zipcode": "66123",
-                "house_owner": True,
-                "address_line1": "Weststr. 1",
-                "city": "Chemnitz",
+                "lead": {
+                    "phone": "+491234",
+                    "email": "johndoe123@example.com",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "street": "Weststr.",
+                    "housenumber": "1",
+                    "postcode": "66123",
+                    "city": "Chemnitz",
+                    "country": "de",
+                },
+                "product": {"name": "solar"},
+                "lead_attributes": {
+                    "property_type": "single_family_house",
+                    "house_owner": True,
+                },
+                "meta_attributes": {
+                    "unique_id": "abc-123",
+                    "utm_source": "google",
+                },
             }
         },
     )
-
 
 
 @app.get("/", include_in_schema=False)

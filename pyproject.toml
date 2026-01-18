@@ -33,3 +33,7 @@ dev = [
 testpaths = ["tests"]
 pythonpath = ["."]
 
+[tool.poetry]
+package-mode = false
+
+
